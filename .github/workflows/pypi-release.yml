@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-            pattern: *.whl
+            pattern: "*.whl"
             path: dist/
       - name: Publish packages to Pypi
         uses: pypa/gh-action-pypi-publish@release/v1
