@@ -1,0 +1,17 @@
+name: "pypi-release"
+
+on: 
+  push:
+
+jobs:
+  publish-wheels-to-pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+            pattern: *.whl
+            path: dist/
+      - name: Publish packages to Pypi
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
