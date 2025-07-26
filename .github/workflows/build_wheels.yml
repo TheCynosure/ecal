@@ -46,6 +46,10 @@ jobs:
         with:
             pattern: "cibw-wheels-*"
             path: dist/
+      - name: Move wheels to root
+        run: mv "dist/**/*.whl" dist/
+      - name: Remove folders
+        run: find dist/ -type d | xargs -I {} rm {}
       - name: Publish packages to Pypi
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
