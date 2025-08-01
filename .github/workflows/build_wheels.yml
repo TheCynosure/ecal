@@ -48,12 +48,8 @@ jobs:
             path: dist/
       - name: Move wheels to dist folder
         run: >
-          sudo apt install -y zip;
-          ls dist/ | xargs -I {} unzip dist/{};
-          mv "dist/**/*.whl" dist/;
+          mv dist/**/*.whl dist/;
           ls dist/ | grep -v ".whl" | xargs -I {} rm {}
-      - name: Remove folders
-        run: find dist/ -type d | xargs -I {} rm {}
       - name: Publish packages to Pypi
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
