@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, ubuntu-24.04-arm]
+        os: [ubuntu-latest] #, windows-latest, ubuntu-24.04-arm]
 
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
 
   publish_wheels:
     name: Publish wheels to PyPi
-    if: startsWith(github.ref, 'refs/tags')
+    # if: startsWith(github.ref, 'refs/tags')
     needs: [build_wheels]
     runs-on: ubuntu-latest
     permissions:
@@ -48,8 +48,7 @@ jobs:
             path: dist/
       - name: Move wheels to dist folder
         run: >
-          mv dist/**/*.whl dist/;
-          ls dist/ | grep -v ".whl" | xargs -I {} rm {}
+          mv dist/**/*.whl dist/
       - name: Publish packages to Pypi
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
