@@ -48,7 +48,7 @@ jobs:
             path: dist/
       - name: Move wheels to dist folder
         run: >
-          mv dist/**/*.whl dist/
+          mv dist/**/*.whl dist/;
           rm -r dist/cibw-wheels-*
       - name: Publish packages to Pypi
         uses: pypa/gh-action-pypi-publish@release/v1
